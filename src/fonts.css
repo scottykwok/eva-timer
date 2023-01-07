@@ -1,0 +1,17 @@
+@import "https://fonts.googleapis.com/css2?family=Zen+Antique&text=内外部主電源供給システム活動限界まであと";
+
+@font-face {
+    font-family: ArialRoundedMT;
+    src:
+        url("fonts/arial-rounded-mt/Arial-Rounded-MT.woff2") format("woff2"),
+        url("fonts/arial-rounded-mt/Arial-Rounded-MT.woff") format("woff"),
+        url("fonts/arial-rounded-mt/Arial-Rounded-MT.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: TrueLCD;
+    src:
+        url("fonts/true-lcd/true-lcd.woff2") format("woff2"),
+        url("fonts/true-lcd/true-lcd.woff") format("woff"),
+        url("fonts/true-lcd/true-lcd.ttf") format('truetype');
+}

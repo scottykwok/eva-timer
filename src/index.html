@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>EVA Clock</title>
+	<link rel="manifest" href="manifest.json" />
+	<link rel="stylesheet" href="fonts.css">
+	<script>
+		if (navigator && navigator.serviceWorker) {
+			navigator.serviceWorker.register('service-worker.js');
+		}
+	</script>
+	<link rel="shortcut icon" type="image/png" sizes="128x128" href="design/128w/favicon.png">
+	<link rel="icon" type="image/png" sizes="128x128" href="design/128w/favicon.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="design/192w/favicon.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="128x128" href="design/128w/favicon.png">
+	<link rel="apple-touch-icon" type="image/png" sizes="192x192" href="design/192w/favicon.png">
+</head>
+
+<body style="background-color: black;">
+	<eva-clock mode="COUNTDOWN" total-sec="60" danger-sec="30" perspective="1" container-id="container"
+		src="design/SVG/eva-clock.svg">
+		<link rel="stylesheet" href="css/eva-clock.css">
+		<script type="text/javascript" src="js/clocks.js"></script>
+		<script type="text/javascript" src="js/neon-svg.js"></script>
+		<script type="text/javascript" src="js/eva-clock.js"></script>
+	</eva-clock>
+</body>
+
+</html>

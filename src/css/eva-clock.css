@@ -1,0 +1,239 @@
+/* Set container size */
+#container {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: black;
+    overflow: auto;
+    display: inline-block;
+}
+
+/* Perspective Transform */
+#container .sideView {
+    animation: sideViewKF 0.5s ease 0s 1 normal both;
+}
+
+@keyframes sideViewKF {
+    to {
+        transform: 
+        perspective(58vw) 
+        translate(-16vw, 8vw) 
+        rotateX(-6deg) 
+        rotateZ(-18deg) 
+        rotateY(-36deg)
+    }
+}
+
+#container .frontView {
+    animation: frontViewKF 0.5s ease 0s 1 normal both;
+}
+
+@keyframes frontViewKF {
+    from {
+        transform:
+        perspective(58vw) 
+        translate(-16vw, 8vw) 
+        rotateX(-6deg) 
+        rotateZ(-18deg) 
+        rotateY(-36deg)
+    }
+}
+
+#jp-external,
+#jp-internal,
+#jp-system,
+#jp-active-time1,
+#jp-active-time2 {
+    font-family: 'Zen Antique', sans-serif;
+}
+
+#en-external,
+#en-internal,
+#en-system,
+#en-active-time,
+#en-stop,
+#en-slow,
+#en-normal,
+#en-racing,
+#en-danger,
+#en-emergency {
+    font-family: ArialRoundedMT, sans-serif;
+}
+
+#en-second,
+#en-millis,
+#en-minute {
+    font-family: TrueLCD, sans-serif;
+}
+
+#colon1a-sys,
+#colon1b-sys,
+#en-second-sys,
+#en-millis-sys,
+#en-minute-sys {
+    font-family: TrueLCD, sans-serif;
+}
+
+.neon-amber {
+    fill: orange;
+    stroke: orange;
+    /* Not for iPhone  */
+    filter: drop-shadow(6px 6px 20px #C00) saturate(200%);
+}
+
+.neon-wireframe {
+    fill: none;
+    stroke: white;
+    stroke-width: 2px;
+}
+
+.neon-wireframe-text {
+    fill: white;
+    stroke: white;
+    opacity: 0.8;
+}
+
+.opacity70 {
+    opacity: 0.7;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+/* Clickable */
+.clickable {
+    cursor: pointer;
+}
+
+.clickable,
+.disableSelect {
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+
+/* Blinker */
+.blink_3_1 {
+    animation: blink_3_1_keyframes 0.14s step-start infinite;
+}
+
+@keyframes blink_3_1_keyframes {
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.blink_8_2 {
+    animation: blink_8_2_keyframes 0.33s step-start infinite;
+}
+
+@keyframes blink_8_2_keyframes {
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.breath {
+    animation: breath_keyframes 1.5s ease infinite;
+}
+
+@keyframes breath_keyframes {
+    30% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    70% {
+        opacity: 1;
+    }
+}
+
+/* Blink FadeIn/FadeOut */
+
+.fadeIn_blink {
+    animation: fadeIn_blink_keyframes 0.35s step-start 0s 1 normal forwards;
+}
+
+@keyframes fadeOut_blink_keyframes {
+    0% {
+        visibility: visible;
+    }
+
+    15% {
+        visibility: hidden;
+    }
+
+    30% {
+        visibility: visible;
+    }
+
+    45% {
+        visibility: hidden;
+    }
+
+    60% {
+        visibility: visible
+    }
+
+    75% {
+        visibility: visible
+    }
+
+    90% {
+        visibility: hidden;
+    }
+
+    100% {
+        visibility: hidden;
+    }
+}
+
+.fadeOut_blink {
+    animation: fadeOut_blink_keyframes 0.35s step-start 0s 1 normal forwards;
+}
+
+@keyframes fadeIn_blink_keyframes {
+    0% {
+        visibility: hidden;
+    }
+
+    15% {
+        visibility: visible;
+    }
+
+    30% {
+        visibility: hidden;
+    }
+
+    45% {
+        visibility: visible;
+    }
+
+    60% {
+        visibility: hidden;
+    }
+
+    75% {
+        visibility: hidden;
+    }
+
+    90% {
+        visibility: visible;
+    }
+
+    100% {
+        visibility: visible;
+    }
+}
