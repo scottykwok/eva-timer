@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interactive SVG</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+    <link rel="stylesheet" href="fonts.css">
+</head>
+
+<body style="background-color: black;">
+    <h3 style="color: white;">Convert SVG element to a button</h3>
+    <div id="container" style="width: 200px;"></div>
+    <h3 id="result" style="color: white;"></h3>
+
+    <py-script src="py/svgui.py"></py-script>
+    <py-script>
+        # Load SVG
+        gui = Div("container").load(svg="images/power.svg").select()
+
+        # Result
+        result = Div("result").select()
+
+        # Register buttons
+        gui.select("#pan-internal,#pan-system,#pan-external").clickable().on_click(
+            lambda event: result.text_content(f"{event.currentTarget.id} is clicked!")
+        )
+    </py-script>
+
+</body>
+</html>

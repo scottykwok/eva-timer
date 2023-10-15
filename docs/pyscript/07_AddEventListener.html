@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interactive</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+    <link rel="stylesheet" href="effects.css">
+</head>
+
+<body style="background-color: black;">
+    <h3 style="color: white;">Convert SVG element to a button</h3>
+    <div id="container" style="width: 200px;"></div>
+    <h3 style="color: white;" id="result"></h3>
+    <py-script>
+        from js import document
+        from pyodide.http import open_url
+        from pyodide.ffi import create_proxy
+
+        def load_svg(elementId, url):
+            container = document.getElementById(elementId)
+            container.innerHTML = open_url(url).read()
+            return container
+
+        # Load SVG
+        container = load_svg("container", "images/power.svg")
+
+        # On Click callback
+        def on_click(event):
+            e = document.getElementById("result")
+            e.textContent = f"{event.currentTarget.id} is clicked!"
+
+        # Register button
+        def register_button(selector):
+            button = container.querySelector(selector)
+            button.classList.add("clickable")
+            button.addEventListener("click", create_proxy(on_click))
+
+        register_button("#pan-internal")
+        register_button("#pan-system")
+        register_button("#pan-external")
+    </py-script>
+</body>
+</html>

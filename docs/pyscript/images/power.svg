@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><svg id="Layer_2" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 289.41 474.68">
+    <defs>
+        <style>
+            .cls-1,
+            .cls-2 {
+                fill: none;
+            }
+
+            .cls-3 {
+                letter-spacing: -.02em;
+            }
+
+            .cls-4 {
+                font-size: 30px;
+            }
+
+            .cls-4,
+            .cls-5,
+            .cls-6,
+            .cls-7,
+            .cls-8,
+            .cls-9 {
+                fill: #f7931e;
+            }
+
+            .cls-4,
+            .cls-8,
+            .cls-9 {
+                font-family: ArialRoundedMT, 'Arial Rounded MT';
+            }
+
+            .cls-10 {
+                fill: url(#New_Pattern);
+            }
+
+            .cls-5,
+            .cls-6,
+            .cls-7 {
+                font-family: ZenAntique-Regular, 'Zen Antique';
+            }
+
+            .cls-5,
+            .cls-8 {
+                font-size: 56px;
+            }
+
+            .cls-11 {
+                letter-spacing: 0em;
+            }
+
+            .cls-12 {
+                letter-spacing: -.07em;
+            }
+
+            .cls-13 {
+                letter-spacing: 0em;
+            }
+
+            .cls-14 {
+                letter-spacing: -.13em;
+            }
+
+            .cls-15 {
+                fill: red;
+            }
+
+            .cls-16 {
+                letter-spacing: 0em;
+            }
+
+            .cls-17 {
+                letter-spacing: -.12em;
+            }
+
+            .cls-18 {
+                letter-spacing: -.09em;
+            }
+
+            .cls-19 {
+                fill: lime;
+                stroke: lime;
+                stroke-width: 4px;
+            }
+
+            .cls-19,
+            .cls-2 {
+                stroke-miterlimit: 10;
+            }
+
+            .cls-20 {
+                letter-spacing: 0em;
+            }
+
+            .cls-21 {
+                letter-spacing: 0em;
+            }
+
+            .cls-6 {
+                font-size: 108.34px;
+                letter-spacing: -.07em;
+            }
+
+            .cls-7 {
+                font-size: 107.48px;
+                letter-spacing: -.07em;
+            }
+
+            .cls-2 {
+                stroke: #f15a24;
+                stroke-width: 2px;
+            }
+
+            .cls-22 {
+                fill: url(#New_Pattern-2);
+            }
+
+            .cls-23 {
+                letter-spacing: -.02em;
+            }
+
+            .cls-9 {
+                font-size: 52px;
+                letter-spacing: -.01em;
+            }
+        </style>
+        <pattern id="New_Pattern" x="0" y="0" width="100" height="96"
+            patternTransform="translate(4613.58 -10724.47) rotate(-47.29) scale(1.41 1.52) skewX(13.98)"
+            patternUnits="userSpaceOnUse" viewBox="0 0 100 96">
+            <rect class="cls-1" width="100" height="96" />
+            <rect class="cls-15" x="0" y="64" width="100" height="17" />
+            <rect x="0" y="81" width="100" height="15" />
+            <rect class="cls-15" x="0" y="32" width="100" height="17" />
+            <rect x="0" y="49" width="100" height="15" />
+            <rect class="cls-15" x="0" y="0" width="100" height="17" />
+            <rect x="0" y="17" width="100" height="15" />
+        </pattern>
+        <pattern id="New_Pattern-2"
+            patternTransform="translate(4518.11 -10907.05) rotate(-47.29) scale(1.41 1.52) skewX(13.98)"
+            xlink:href="#New_Pattern" />
+    </defs>
+    <g id="Components">
+        <g id="pan-power">
+            <g id="pan-external">
+                <g id="dot-green-external">
+                    <line id="dot2-external" class="cls-19" x1="2.67" y1="466.55" x2="2.67" y2="474.68" />
+                    <line id="dot1-external" class="cls-19" x1="287.01" y1="466.55" x2="287.01" y2="474.68" />
+                </g>
+                <rect id="strip-external" class="cls-10" x="222" y="296.55" width="65" height="163" />
+                <rect id="border-external" class="cls-2" x="1" y="294.55" width="287" height="166" /><text
+                    id="text-external-en" class="cls-8" transform="translate(12.07 452.44) scale(.7 1)">
+                    <tspan x="0" y="0">E</tspan>
+                    <tspan class="cls-13" x="27.55" y="0">X</tspan>
+                    <tspan class="cls-11" x="59.98" y="0">TERNAL</tspan>
+                </text><text id="text-external-jp" class="cls-6" transform="translate(6.72 396.89) scale(.95 1)">
+                    <tspan x="0" y="0">外部</tspan>
+                </text>
+            </g>
+            <g id="pan-internal">
+                <g id="dot-green-internal">
+                    <line id="dot2-internal" class="cls-19" x1="2.06" x2="2.06" y2="8.13" />
+                    <line id="dot1-internal" class="cls-19" x1="287.41" x2="287.41" y2="8.13" />
+                </g>
+                <rect id="strip-internal" class="cls-22" x="222" y="10.55" width="65" height="163" />
+                <rect id="border-internal" class="cls-2" x="2" y="9.55" width="286" height="166" /><text
+                    id="text-internal-en" class="cls-9" transform="translate(12.82 167.9) scale(.79 1)">
+                    <tspan x="0" y="0">INTERNAL</tspan>
+                </text><text id="text-internal-jp" class="cls-7" transform="translate(5.75 112.13) scale(.98 1)">
+                    <tspan x="0" y="0">内部</tspan>
+                </text>
+            </g>
+            <g id="pan-system">
+                <g id="dot-green-system">
+                    <line id="dot4-system" class="cls-19" x1="2.03" y1="286.21" x2="2.03" y2="291.64" />
+                    <line id="dot3-system" class="cls-19" x1="286.38" y1="285.21" x2="286.38" y2="290.64" />
+                    <line id="dot2-system" class="cls-19" x1="2.24" y1="179.66" x2="2.24" y2="184.69" />
+                    <line id="dot1-system" class="cls-19" x1="286.59" y1="180.66" x2="286.59" y2="185.69" />
+                </g>
+                <rect id="border-system" class="cls-2" x="1" y="188.55" width="287" height="93" /><text
+                    id="text-system-en" class="cls-4" transform="translate(16 274.26) scale(.57 1)">
+                    <tspan class="cls-3" x="0" y="0">M</tspan>
+                    <tspan class="cls-16" x="23.55" y="0">AIN ENE</tspan>
+                    <tspan class="cls-20" x="122.55" y="0">R</tspan>
+                    <tspan class="cls-21" x="138.51" y="0">GY SUPP</tspan>
+                    <tspan class="cls-18" x="244.71" y="0">L</tspan>
+                    <tspan class="cls-16" x="256.08" y="0">Y S</tspan>
+                    <tspan class="cls-23" x="292.64" y="0">Y</tspan>
+                    <tspan class="cls-16" x="308.21" y="0">STEM</tspan>
+                </text><text id="text-system-jp" class="cls-5" transform="translate(8.75 242.32) scale(.56 1)">
+                    <tspan class="cls-12" x="0" y="0">主電源供給 </tspan>
+                    <tspan class="cls-17" x="275.46" y="0">シ</tspan>
+                    <tspan class="cls-12" x="324.8" y="0">ス</tspan>
+                    <tspan class="cls-14" x="376.94" y="0">テ</tspan>
+                    <tspan class="cls-12" x="425.71" y="0">ム</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Async Timer</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css"/>
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+</head>
+
+<body style="background-color: black">
+    <link rel="stylesheet" href="fonts.css">
+    <div id="timestamp" style="color:orange;font-family: TrueLCDNGE"></div>
+    <py-script>
+        import asyncio
+        import time
+        from js import document
+
+        async def systemtime_loop():
+            html_timestamp = Element("timestamp")
+            while True:
+                t = time.time()
+                minutes = int((t % 3600) / 60)
+                seconds = int(t % 60)
+                centiseconds = int((t % 1) * 100)
+                s = f"{minutes:02d}:{seconds:02d}:{centiseconds:02d}"
+                html_timestamp.write(s)
+                await asyncio.sleep(0.05)
+
+        asyncio.ensure_future(systemtime_loop())
+    </py-script>
+</body>
+</html>

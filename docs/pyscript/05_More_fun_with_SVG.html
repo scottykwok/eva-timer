@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>More fun with SVG</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+    <link rel="stylesheet" href="effects.css">
+    <style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+    }
+    </style>
+</head>
+
+<body>
+    <h3>Load SVG file</h3>
+    <button id="nerv" py-click="load_svg('container', 'images/nerv.svg')">NERV logo</button>
+    <button id="wille" py-click="load_svg('container', 'images/wille.svg')">WILLE logo</button>
+    <button id="eva3" py-click="load_svg('container', 'images/eva3.svg')">Evangelion 3.0 logo</button>
+    <h3>Style</h3>
+    <table>
+    <tr>
+        <th>Resize</th>
+        <th>Opacity</th>
+        <th>Rotate</th>
+        <th>CSS</th>
+    </tr>
+    <tr>
+        <td>
+            <button id="bigger" py-click="resize(1.2)">+</button>
+            <button id="smaller" py-click="resize(0.8)">-</button>
+        </td>
+        <td>
+            <button id="increase" py-click="opacity(1.2)">+</button>
+            <button id="decrease" py-click="opacity(0.8)">-</button>
+        </td>
+        <td>
+            <button id="reset" py-click="deg=0;transform('')">Reset</button>
+            <button id="rotate90" py-click="rotate(15)">+</button>
+            <button id="rotate115" py-click="rotate(-15)">-</button>
+        </td>
+        <td>
+            <button id="breathing" py-click="toggle_class('breath')">breath</button>
+            <button id="blink_3_1" py-click="toggle_class('blinkfast')">blink</button>
+            <button id="roll" py-click="toggle_class('roll')">roll</button>
+            <button id="roll" py-click="toggle_class('outline')">outline</button>
+        </td>
+    </tr>
+    </table>
+
+    <br>
+    <pre id="info"></pre>
+    <br>
+    <br>
+    <div id="container" style="width: 150px"></div>
+
+    <py-script>
+        import asyncio
+        from js import document, window
+        from pyodide.http import open_url
+        from pyodide.ffi import to_js
+
+        e = document.getElementById('container')
+        deg = 0
+
+        def load_svg(elementId, url):
+            document.getElementById(elementId).innerHTML = open_url(url).read()
+            desc()
+
+        def resize(factor):
+            width = e.offsetWidth
+            e.style.width = str(int(width * factor))+"px"
+            desc()
+
+        def opacity(factor):
+            opacity = float(window.getComputedStyle(e).opacity)
+            e.style.opacity = opacity * factor
+            desc()
+
+        def rotate(factor):
+            global deg
+            deg = factor + deg
+            transform(f'rotate({deg}deg)')
+
+        def transform(spec):
+            e.style.transform = spec
+            desc()
+
+        def toggle_class(classname):
+            e.classList.toggle(classname)
+            desc()
+
+        def desc():
+            css_styles = window.getComputedStyle(e)
+            info = {
+                'height': e.offsetHeight,
+                'width': e.offsetWidth,
+                'opacity': css_styles.opacity,
+                'transform': e.style.transform,
+                'classList': e.classList,
+            }
+            Element('info').write(info)
+
+        load_svg('container', 'images/nerv.svg')
+        desc()
+    </py-script>
+
+    </body>
+</html>
