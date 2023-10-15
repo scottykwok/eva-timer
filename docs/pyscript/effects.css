@@ -1,0 +1,128 @@
+/* Blinkers */
+.blinkfast {
+    animation: blinkfast_keyframes 0.14s step-start infinite;
+}
+
+@keyframes blinkfast_keyframes {
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink_keyframes 0.33s step-start infinite;
+}
+
+@keyframes blink_keyframes {
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.breath {
+    animation: breath_keyframes 1.5s ease infinite;
+}
+
+@keyframes breath_keyframes {
+    30% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    70% {
+        opacity: 1;
+    }
+}
+
+/* Clickable */
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover,
+.darken {
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:#000;
+    opacity:0.5;
+    border-radius:30px;
+}
+
+.clickable,
+.disableSelect {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+/* zoom */
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    -ms-transform: scale(0.96); /* IE 9 */
+    -webkit-transform: scale(0.96); /* Safari 3-8 */
+    transform: scale(0.96);
+    transform-origin: center;
+}
+
+
+/* Animation */
+.roll {
+    animation: roll_keyframes 2s ease 0s infinite alternate both;
+}
+
+@keyframes roll_keyframes {
+    to {
+        -webkit-transform:
+            translate(50vw) rotateZ(360deg);
+        transform:
+            translate(50vw) rotateZ(360deg);
+    }
+}
+
+/* outline */
+.outline {
+    fill: none;
+    stroke: black;
+    stroke-width: 1px;
+}
+
+/* Perspective Transform */
+.view-tilted {
+    animation: view-tilted_keyframes 0.5s ease 0s 1 normal both;
+}
+
+@keyframes view-tilted_keyframes {
+    to {
+        transform:
+            perspective(58vw) translate(-16vw, 8vw) rotateX(-6deg) rotateZ(-18deg) rotateY(-36deg)
+    }
+}
+
+.view-flatten {
+    animation: view-flatten_keyframes 0.5s ease 0s 1 normal both;
+}
+
+@keyframes view-flatten_keyframes {
+    from {
+        transform:
+            perspective(58vw) translate(-16vw, 8vw) rotateX(-6deg) rotateZ(-18deg) rotateY(-36deg)
+    }
+}

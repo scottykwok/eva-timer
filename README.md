@@ -81,9 +81,9 @@ See [eva-timer-analysis](https://github.com/scottykwok/eva-timer-analysis) for a
 
 ## Changelog
 [1.0.0](releases/tag/v1.0.0)
-
-This was the first implementation in plain Javascript.
+- This was the first implementation in plain Javascript.
 
 [tbc](releases/tag/v2.0.0)
-
-This version has been refactored to support PyScript. The project will be presented in [PyCon APAC 2023 @ Tokyo, Japan](https://2023-apac.pycon.jp/timetable).
+- This version has been refactored to support PyScript and Javascript
+- Create `svgui.py` and `svgui.js` for better reusability
+- The project will be presented in [PyCon APAC 2023 @ Tokyo, Japan](https://2023-apac.pycon.jp/timetable).

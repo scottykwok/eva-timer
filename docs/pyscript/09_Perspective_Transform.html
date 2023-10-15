@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Perspective Transform</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+    <link rel="stylesheet" href="fonts.css">
+</head>
+
+<body style="background-color: black;">
+    <div id="container"></div>
+
+    <py-script src="py/svgui.py"></py-script>
+    <py-script>
+        # Load SVG
+        gui = Div("container").load(svg="images/eva-timer-demo.svg",
+                                    css="effects.css").select()
+
+        # Default tilted
+        gui.toggle_class("view-tilted")
+
+        # Toggle the transform
+        gui.select("#textgroup-clock").clickable().on_click(
+            lambda e: gui.toggle_class("view-flatten")
+        )
+    </py-script>
+
+</body>
+</html>
