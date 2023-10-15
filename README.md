@@ -76,7 +76,7 @@ In Chrome, you can install this app as standalone web app. The "Install app" but
 | PWA on Chrome |<img src="images/07_pwa2.jpg" width="300" />|
 
 ## Documentations
-See [docs](tree/dev/docs)
+See [docs](docs)
 
 ## Resources
 See [eva-timer-analysis](https://github.com/scottykwok/eva-timer-analysis) for a list of the original timer designs.
