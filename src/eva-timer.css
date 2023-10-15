@@ -1,0 +1,28 @@
+
+
+/* Perspective Transform */
+.view-tilted {
+    animation: view-tilted_keyframes 0.5s ease 0s 1 normal both;
+}
+
+@keyframes view-tilted_keyframes {
+    to {
+        -webkit-transform:
+            perspective(58vw) translate(-16vw, 8vw) rotateX(-6deg) rotateZ(-18deg) rotateY(-36deg);
+        transform:
+            perspective(58vw) translate(-16vw, 8vw) rotateX(-6deg) rotateZ(-18deg) rotateY(-36deg);
+    }
+}
+
+.view-flattened {
+    animation: view-flattened_keyframes 0.5s ease 0s 1 normal both;
+}
+
+@keyframes view-flattened_keyframes {
+    from {
+        -webkit-transform:
+            perspective(58vw) translate(-16vw, 8vw) rotateX(-6deg) rotateZ(-18deg) rotateY(-36deg);
+        transform:
+            perspective(58vw) translate(-16vw, 8vw) rotateX(-6deg) rotateZ(-18deg) rotateY(-36deg);
+    }
+}

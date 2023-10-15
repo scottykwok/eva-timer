@@ -1,0 +1,67 @@
+<!--
+<style>
+div {
+    zoom: 1.1;
+    -moz-transform: scale(1.1);
+    -moz-transform-origin: 0 0;
+}
+</style>
+-->
+<div style="background-color:black; color:white;">
+    <h1 >設定</h1>
+    <hr style="background-color: red; height: 5px; border: 0px">
+    <form>
+        <div>
+            <label>活動限界:</label>
+            &nbsp;
+            <input type="text" id="duration" name="duration" size="5" value="05:00">
+        </div>
+        <div>
+            <label>危険緊急:</label>
+            &nbsp;
+            <input type="text" id="emergency_duration" name="emergency_duration" size="5" value="01:00">
+        </div>
+        <hr style="background-color: red; height: 5px; border: 0px">
+
+        <div>
+            <label for="countfdown">カウントダウン:</label>
+            <input type="radio" id="countdown" name="timer" value="0" checked>
+        </div>
+        <div>
+            <label for="countup">カウントアップ:</label>
+            <input type="radio" id="countup" name="timer" value="1">
+        </div>
+        <div>
+            <label for="systemtime">現在の時刻:</label>
+            <input type="radio" id="systemtime" name="timer" value="2">
+        </div>
+        <hr style="background-color: red; height: 5px; border: 0px">
+
+        <div>
+            <input type="checkbox" id="tiltedview" name="tiltedview" checked>
+            <label for="tiltedview">傾斜したビュー Tilted View</label>
+        </div>
+        <div>
+            <input type="checkbox" id="fullscreen" name="fullscreen">
+            <label for="fullscreen">全画面表示 Fullscreen (iPhone 🙅‍♂️) </label>
+        </div>
+        <div>
+            <input type="checkbox" id="greyscale" name="greyscale">
+            <label for="greyscale">グレースケール Greyscale </label>
+        </div>
+        <div>
+            <input type="checkbox" id="wireframe" name="wireframe">
+            <label for="wireframe">ワイヤーフレーム Wireframe</label>
+        </div>
+        <hr style="background-color: red; height: 5px; border: 0px">
+        <div>
+            <input type="checkbox" id="autoplay" name="autoplay">
+            <label for="autoplay">自動再生 AutoPlay</label>
+        </div>
+        <hr style="background-color: red; height: 5px; border: 0px">
+        <button id="ok" type="button">OK</button>&nbsp;&nbsp;
+        <!-- <input id="reset" type="reset"> -->
+        <br>
+        <br>
+    </form>
+</div>

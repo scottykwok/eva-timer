@@ -1,19 +1,15 @@
 {
-    "name": "EVA Clock",
-    "short_name": "EVA Clock",
-    "description": "Evangelion Clock",
+    "name": "Evangelion Timer",
+    "short_name": "EVA Timer",
+    "description": "活動限界まであと",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#000000",
     "theme_color": "#7F47DD",
     "icons": [
         {
-            "src": "design/192w/favicon.png",
+            "src": "images/favicon.png",
             "sizes": "192x192"
-        },
-        {
-            "src": "design/128w/favicon.png",
-            "sizes": "128x128"
         }
     ]
 }

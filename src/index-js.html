@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>活動限界まであと (js)</title>
+    <!-- icons -->
+	<link rel="icon" type="image/png" href="images/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link rel="apple-touch-icon" type="image/png" href="images/favicon.png">
+    <!-- fonts -->
+    <link rel="stylesheet" href="fonts.css">
+
+    <!-- Javascript -->
+	<script type="text/javascript" src="js/svgui.js"></script>
+
+    <!-- service worker -->
+	<link rel="manifest" href="manifest.json" />
+	<script>
+		if (navigator && navigator.serviceWorker) {
+			navigator.serviceWorker.register('service-worker.js');
+		}
+	</script>
+</head>
+
+<body style="background-color: black;">
+	<eva-timer
+        count_up=0 duration="60"
+        emergency_duration="30"
+        tilted="1"
+        container-id="container"
+		src="images/eva-timer.svg">
+        <link rel="stylesheet" href="svgui.css">
+        <link rel="stylesheet" href="eva-timer.css">
+		<script type="text/javascript" src="js/timer.js"></script>
+		<script type="text/javascript" src="js/eva-timer.js"></script>
+	</eva-timer>
+</body>
+
+</html>

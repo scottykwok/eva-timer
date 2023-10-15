@@ -1,3 +1,4 @@
+/* Fonts for EVA timer */
 @import "https://fonts.googleapis.com/css2?family=Zen+Antique&text=内外部主電源供給システム活動限界まであと";
 
 @font-face {
@@ -9,9 +10,9 @@
 }
 
 @font-face {
-    font-family: TrueLCD;
+    font-family: TrueLCDNGE;
     src:
-        url("fonts/true-lcd/true-lcd.woff2") format("woff2"),
-        url("fonts/true-lcd/true-lcd.woff") format("woff"),
-        url("fonts/true-lcd/true-lcd.ttf") format('truetype');
+        url("fonts/true-lcd-nge/true-lcd-nge.woff2") format("woff2"),
+        url("fonts/true-lcd-nge/true-lcd-nge.woff") format("woff"),
+        url("fonts/true-lcd-nge/true-lcd-nge.ttf") format('truetype');
 }

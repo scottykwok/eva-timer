@@ -1,0 +1,245 @@
+/* Blinkers */
+.blink-fast {
+    animation: blink-fast_keyframes 0.2s step-start infinite;
+}
+
+@keyframes blink-fast_keyframes {
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    animation: blink_keyframes 0.33s step-start infinite;
+}
+
+@keyframes blink_keyframes {
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.breath {
+    animation: breath_keyframes 1.5s ease infinite;
+}
+
+@keyframes breath_keyframes {
+    30% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    70% {
+        opacity: 1;
+    }
+}
+
+/* More complex blinkIn/blinkOut  */
+.blink-hide {
+    animation: blink-hide_keyframes 0.35s step-start 0s 1 normal forwards;
+}
+
+@keyframes blink-hide_keyframes {
+    0% {
+        visibility: visible;
+    }
+
+    15% {
+        visibility: hidden;
+    }
+
+    30% {
+        visibility: visible;
+    }
+
+    45% {
+        visibility: hidden;
+    }
+
+    60% {
+        visibility: visible
+    }
+
+    75% {
+        visibility: visible
+    }
+
+    90% {
+        visibility: hidden;
+    }
+
+    100% {
+        visibility: hidden;
+    }
+}
+
+.blink-show {
+    animation: blink-show_keyframes 0.35s step-start 0s 1 normal forwards;
+}
+
+@keyframes blink-show_keyframes {
+    0% {
+        visibility: hidden;
+    }
+
+    15% {
+        visibility: visible;
+    }
+
+    30% {
+        visibility: hidden;
+    }
+
+    45% {
+        visibility: visible;
+    }
+
+    60% {
+        visibility: hidden;
+    }
+
+    75% {
+        visibility: hidden;
+    }
+
+    90% {
+        visibility: visible;
+    }
+
+    100% {
+        visibility: visible;
+    }
+}
+
+/* Clickable */
+.clickable {
+    cursor: pointer;
+}
+
+.clickable,
+.disableSelect {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.darken {
+    opacity: 1;
+}
+
+.darken:hover {
+    opacity: 0.65;
+}
+
+/* zoom */
+.zoom {
+    transition: transform .2s;
+}
+
+.zoom:hover {
+    -ms-transform: scale(0.96);
+    /* IE 9 */
+    -webkit-transform: scale(0.96);
+    /* Safari 3-8 */
+    transform: scale(0.96);
+    transform-origin: center;
+}
+
+/* alginment */
+.align-center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+/* popup */
+.popup-background {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: all 0.4s;
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* .popup-wip {
+    align-items: center;
+    justify-content: left;
+    display: flex;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+} */
+
+.popup-foreground {
+    position: absolute;
+    width: 400px;
+    padding: 1em 2em;
+    border-radius: 1em;
+}
+
+/* wireframe */
+.wireframe {
+    fill: none;
+    stroke: white;
+    stroke-width: 2px;
+}
+
+.wireframe-bold {
+    stroke-width: 4px;
+}
+
+.greyscale {
+    fill: white;
+    stroke: white;
+}
+
+.opacity70 {
+    opacity: 0.7;
+}
