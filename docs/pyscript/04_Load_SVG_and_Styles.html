@@ -10,7 +10,7 @@
         from js import document
         from pyodide.http import open_url
 
-        e = document.getElementById('container')
+        e = document.querySelector("#container")
         e.innerHTML = open_url("images/nerv.svg").read()
         e.style.transform = "perspective(500vw) rotateX(60deg) rotateZ(50deg)"
     </py-script>

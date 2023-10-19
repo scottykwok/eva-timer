@@ -197,6 +197,12 @@ class Svgui:
     def stroke_color(self, color):
         return self.style({"stroke": color})
 
+    def opacity(self, i):
+        return self.style({"opacity": i})
+
+    def font_family(self, fontface):
+        return self.style({"fontFamily": fontface})
+    
     def on_click(self, listener):
         for e in self.targets:
             e.addEventListener("click", create_proxy(listener))
