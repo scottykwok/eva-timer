@@ -202,7 +202,15 @@ class Svgui:
 
     def font_family(self, fontface):
         return self.style({"fontFamily": fontface})
-    
+
+    def font_size(self, fontsize):
+        return self.style({"fontSize": fontsize})
+
+    def reset_style(self):
+        for e in self.targets:
+            e.style = ""
+        return self
+
     def on_click(self, listener):
         for e in self.targets:
             e.addEventListener("click", create_proxy(listener))

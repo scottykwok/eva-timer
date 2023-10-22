@@ -7,15 +7,21 @@ gui_parent = None
 gui_settings = None
 timer = None
 config = None
+theme = "default"
+default_color_gradient = None
 
 
 class SELECTORS:
     def __init__(self):
+        self.BACKGROUND = "#pan-background"
         self.PANEL_TIMER = "#pan-clock"
         self.PANEL_POWER = "#pan-power"
         self.ALL_TEXT = "text"
         self.ALL_BORDERS = "path[id*=border], rect[id*=border]"
         self.ALL_DOT_GREEN = "#dot-green line"
+        self.ALL_DOT_BLACK = "#dot-black line"
+        self.ALL_DOT_AMBER = "#dot-amber line"
+        self.ALL_DOT_POWER = "#pan-power [id^=dot]"
         self.ALL_RECTS = "rect"
         self.ALL_LINES = "line"
         self.ALL_PATHS = "path"
@@ -25,6 +31,7 @@ class SELECTORS:
         self.BORDER_SLOW = "#border-slow"
         self.BORDER_NORMAL = "#border-normal"
         self.BORDER_RACING = "#border-racing"
+        self.BORDER_EMERGENCY = "#border-emergency"
         self.BUTTON_POWER_INTERNAL = "#pan-internal"
         self.BUTTON_POWER_EXTERNAL = "#pan-external"
         self.BUTTON_POWER_SYSETM = "#pan-system"
@@ -33,6 +40,11 @@ class SELECTORS:
         self.BUTTON_NORMAL = "#pan-normal"
         self.BUTTON_RACING = "#pan-racing"
         self.BUTTON_EMERGENCY = "#pan-emergency"
+        self.FILL_STOP = "#bkg-stop"
+        self.FILL_SLOW = "#bkg-slow"
+        self.FILL_NORMAL = "#bkg-normal"
+        self.FILL_RACING = "#bkg-racing"
+        self.FILL_EMERGENCY = "#bkg-emergency"
         self.DOT_EMERGENCY = "#dot-emergency1, #dot-emergency2"
         self.BAR_STOP = "#bar-stop"
         self.BAR_SLOW = "#bar-slow"
@@ -54,7 +66,9 @@ class SELECTORS:
         self.TEXT_SYSTEM_TIMER_CENTISEC = "#text-millis-sys"
         self.TEXT_MIN_SEC = "#text-min-sec"
         self.TEXT_CENTISEC = "#text-millis"
-        self.TEXT_TIMER = "#text-min-sec, #text-millis, #text-min-sec-sys, #text-millis-sys"
+        self.TEXT_TIMER = (
+            "#text-min-sec, #text-millis, #text-min-sec-sys, #text-millis-sys"
+        )
 
 
 class STYLES:
@@ -92,8 +106,12 @@ def render_callback(time):
     else:
         gui_timer.select(SEL.TEXTGROUP_TIMER).hide()
         gui_timer.select(SEL.TEXTGROUP_SYSTEM_TIMER).show()
-        gui_timer.select(SEL.TEXT_SYSTEM_TIMER_MIN_SEC).text_content(f"{minutes:02d}:{seconds:02d}")
-        gui_timer.select(SEL.TEXT_SYSTEM_TIMER_CENTISEC).text_content(f":{centiseconds:02d}")
+        gui_timer.select(SEL.TEXT_SYSTEM_TIMER_MIN_SEC).text_content(
+            f"{minutes:02d}:{seconds:02d}"
+        )
+        gui_timer.select(SEL.TEXT_SYSTEM_TIMER_CENTISEC).text_content(
+            f":{centiseconds:02d}"
+        )
 
 
 # For status rendering
@@ -111,7 +129,9 @@ def status_callback(from_status, to_status, from_running, to_running):
         case timer.SYSTEMTIME:
             show_system_time()
         case _:
-            console.log(f"Error: {from_status} -> {to_status}. Running: {from_running} -> {to_running}")
+            console.log(
+                f"Error: {from_status} -> {to_status}. Running: {from_running} -> {to_running}"
+            )
     # Blink the STOP button
     if not to_running and to_status != timer.ENDED:
         gui_timer.select(SEL.BAR_STOP).add_class(STY.BREATH).show()
@@ -131,11 +151,14 @@ def config_callback():
     gui_settings.select("#fullscreen").set_checked(config["fullscreen"] == 1)
     gui_settings.select("#wireframe").set_checked(config["theme"] == "wireframe")
     gui_settings.select("#greyscale").set_checked(config["theme"] == "greyscale")
+    gui_settings.select("#rebuild").set_checked(config["theme"] == "rebuild")
 
 
 def register_event_listeners_timer():
     # Play/Pause/Reset when click on the timer
-    gui_timer.select(SEL.PANEL_TIMER).clickable().on_click(lambda e: (timer.reset() if timer.time_is_up() else timer.toggle_play_pause(),))
+    gui_timer.select(SEL.PANEL_TIMER).clickable().on_click(
+        lambda e: (timer.reset() if timer.time_is_up() else timer.toggle_play_pause(),)
+    )
 
     # Settings
     gui_timer.select(SEL.PANEL_POWER).clickable().on_click(
@@ -161,15 +184,15 @@ def register_event_listeners_timer():
     )
 
     # To Count Up / Down
-    gui_timer.select(SEL.BUTTON_RACING).clickable().on_click(lambda e: (timer.reset() or timer.toggle_mode_count_updown()))
+    gui_timer.select(SEL.BUTTON_RACING).clickable().on_click(
+        lambda e: (timer.reset() or timer.toggle_mode_count_updown())
+    )
 
     # Stop
     gui_timer.select(SEL.BUTTON_STOP).clickable().on_click(lambda e: timer.reset())
 
     # TBC
-    # gui_timer.select("#clickable-bottom").clickable().on_click(
-    #     lambda e: True,
-    # )
+    # gui_timer.select(SEL.CLICKABLE_BOTTOM).clickable().on_click()
 
 
 def register_event_listeners_settings():
@@ -195,6 +218,9 @@ def register_event_listeners_settings():
     gui_settings.select("#greyscale").on_click(
         lambda e: toggle_greyscale(),
     )
+    gui_settings.select("#rebuild").on_click(
+        lambda e: toggle_rebuild_theme(),
+    )
     gui_settings.select("#ok").on_click(
         lambda e: gui_settings.hide(),
     )
@@ -203,14 +229,18 @@ def register_event_listeners_settings():
     gui_settings.select("#duration").on_input(
         lambda element, e: timer.parse_duration(element.value),
     ).on_focusout(
-        lambda element, e: gui_settings.select("#duration").set_value(timer.format_duration()),
+        lambda element, e: gui_settings.select("#duration").set_value(
+            timer.format_duration()
+        ),
     )
 
     # emergency duration
     gui_settings.select("#emergency_duration").on_input(
         lambda element, e: timer.parse_emergency_duration(element.value),
     ).on_focusout(
-        lambda element, e: gui_settings.select("#emergency_duration").set_value(timer.format_emergency_duration()),
+        lambda element, e: gui_settings.select("#emergency_duration").set_value(
+            timer.format_emergency_duration()
+        ),
     )
 
 
@@ -232,6 +262,8 @@ def register_keyboard_listeners():
                 toggle_wireframe()
             case "KeyG":
                 toggle_greyscale()
+            case "KeyT":
+                toggle_rebuild_theme()
             case "ArrowUp":
                 event.preventDefault()
                 timer.adjust_elapsed_time(-1)
@@ -253,6 +285,7 @@ def register_keyboard_listeners():
 
 
 def show_standby():
+    # console.log("show standby")
     gui_timer.select(SEL.TEXTGROUP_TIMER).add_class(STY.BREATH)
     gui_timer.select(
         [
@@ -263,7 +296,9 @@ def show_standby():
         ]
     ).reset_all_color()
     gui_timer.select([SEL.STRIP_INTERNAL, SEL.BAR_RACING]).remove_class(STY.BLINK_FAST)
-    gui_timer.select([SEL.BUTTON_EMERGENCY, SEL.TEXTGROUP_ACTIVE_TIME]).remove_class(STY.BLINK)
+    gui_timer.select([SEL.BUTTON_EMERGENCY, SEL.TEXTGROUP_ACTIVE_TIME]).remove_class(
+        STY.BLINK
+    )
     gui_timer.select(
         [
             SEL.BUTTON_EMERGENCY,
@@ -286,6 +321,10 @@ def show_standby():
             SEL.STRIP_INTERNAL,
         ]
     ).show()
+    if theme == "rebuild":
+        apply_rebuild_theme()
+    else:
+        remove_rebuild_theme()
 
 
 def show_racing():
@@ -300,12 +339,19 @@ def show_racing():
     ).hide()
     gui_timer.blink_show_hide(
         [SEL.BUTTON_POWER_INTERNAL, SEL.STRIP_INTERNAL, SEL.BAR_RACING],
-        [SEL.BUTTON_POWER_EXTERNAL, SEL.STRIP_EXTERNAL, SEL.BAR_NORMAL, SEL.BUTTON_EMERGENCY],
+        [
+            SEL.BUTTON_POWER_EXTERNAL,
+            SEL.STRIP_EXTERNAL,
+            SEL.BAR_NORMAL,
+            SEL.BUTTON_EMERGENCY,
+        ],
     )
 
 
 def show_emergency():
-    gui_timer.select([SEL.ALL_TEXT, SEL.ALL_DOT_GREEN, SEL.DOT_EMERGENCY]).all_color("red")
+    gui_timer.select([SEL.ALL_TEXT, SEL.ALL_DOT_GREEN, SEL.DOT_EMERGENCY]).all_color(
+        "red"
+    )
     gui_timer.select(SEL.ALL_BORDERS).stroke_color("red")
     gui_timer.select(SEL.BUTTON_EMERGENCY).show()
     gui_timer.select(
@@ -322,7 +368,9 @@ def show_emergency():
 
 def show_ended():
     gui_timer.select([SEL.STRIP_INTERNAL, SEL.BAR_RACING]).toggle_class(STY.BLINK_FAST)
-    gui_timer.select([SEL.BUTTON_EMERGENCY, SEL.TEXTGROUP_ACTIVE_TIME]).toggle_class(STY.BLINK)
+    gui_timer.select([SEL.BUTTON_EMERGENCY, SEL.TEXTGROUP_ACTIVE_TIME]).toggle_class(
+        STY.BLINK
+    )
     gui_timer.select(SEL.BAR_RACING).show()
     gui_timer.select(
         [
@@ -344,8 +392,19 @@ def show_system_time():
     console.log("show_system_time")
     gui_timer.select(SEL.TEXTGROUP_TIMER).remove_class(STY.BREATH)
     gui_timer.blink_show_hide(
-        [SEL.BUTTON_POWER_EXTERNAL, SEL.STRIP_EXTERNAL, SEL.BAR_NORMAL, SEL.BUTTON_EMERGENCY],
-        [SEL.BUTTON_POWER_INTERNAL, SEL.STRIP_INTERNAL, SEL.BAR_RACING, SEL.BAR_STOP, SEL.BAR_SLOW],
+        [
+            SEL.BUTTON_POWER_EXTERNAL,
+            SEL.STRIP_EXTERNAL,
+            SEL.BAR_NORMAL,
+            SEL.BUTTON_EMERGENCY,
+        ],
+        [
+            SEL.BUTTON_POWER_INTERNAL,
+            SEL.STRIP_INTERNAL,
+            SEL.BAR_RACING,
+            SEL.BAR_STOP,
+            SEL.BAR_SLOW,
+        ],
     )
 
 
@@ -377,3 +436,115 @@ def toggle_greyscale():
     gui_timer.select(SEL.TEXT_TIMER).toggle_class("greyscale")
     gui_timer.select(SEL.TEXT_TIMER).toggle_class("wireframe-bold")
 
+
+def toggle_rebuild_theme():
+    global theme
+    if theme == "rebuild":
+        theme = "default"
+    else:
+        theme = "rebuild"
+    show_standby()
+
+
+def remove_rebuild_theme():
+    # Background
+    global default_color_gradient
+    if default_color_gradient is not None:
+        color_gradient = gui_timer.select("#linear-gradient").targets[0]
+        color_gradient.innerHTML = default_color_gradient
+    gui_timer.select(
+        [
+            SEL.TEXT_TIMER,
+            # bar-purple,
+            SEL.ALL_TEXT,
+            SEL.ALL_DOT_GREEN,
+            SEL.ALL_DOT_BLACK,
+            SEL.ALL_DOT_AMBER,
+            SEL.ALL_DOT_POWER,
+            SEL.FILL_STOP,
+            SEL.FILL_SLOW,
+            SEL.FILL_NORMAL,
+            SEL.FILL_RACING,
+            SEL.FILL_EMERGENCY,
+            SEL.BORDER_STOP,
+            SEL.BORDER_SLOW,
+            SEL.BORDER_NORMAL,
+            SEL.BORDER_RACING,
+            SEL.BORDER_EMERGENCY,
+            SEL.ALL_BORDERS,
+            "#border-external",
+            "#border-internal",
+            "#border-system",
+        ]
+    ).reset_style()
+
+
+def apply_rebuild_theme():
+    MODE_BUTTON_COLOR = "rgb(52,71,103)"
+    POWER_BUTTON_COLOR = "rgb(78,108,178)"
+    TEXT_COLOR = "rgb(220,231,242)"
+
+    # Background
+    color_gradient = gui_timer.select("#linear-gradient").targets[0]
+    global default_color_gradient
+    if default_color_gradient is None:
+        default_color_gradient = color_gradient.innerHTML
+    color_gradient.innerHTML = (
+        '<stop offset="0" stop-color="Tomato"></stop>'
+        + '<stop offset=".5" stop-color="Orchid"></stop>'
+        + '<stop offset=".85" stop-color="rgb(51,50,200)"></stop>'
+        + '<stop offset="1" stop-color="Blue"></stop>'
+    )
+    gui_timer.select("#bar-purple").all_color(POWER_BUTTON_COLOR)
+
+    # Text
+    gui_timer.select(SEL.ALL_TEXT).all_color(TEXT_COLOR)
+
+    # Dots
+    gui_timer.select(SEL.ALL_DOT_AMBER).all_color("MediumSlateBlue")
+    gui_timer.select(SEL.ALL_DOT_POWER).all_color("Orchid")
+    gui_timer.select(
+        [
+            SEL.ALL_DOT_GREEN,
+            SEL.ALL_DOT_BLACK,
+        ]
+    ).all_color(
+        "MintCream"
+    ).opacity(0.6)
+
+    # Modes
+    gui_timer.select(
+        [
+            SEL.FILL_STOP,
+            SEL.FILL_SLOW,
+            SEL.FILL_NORMAL,
+            SEL.FILL_RACING,
+        ]
+    ).all_color(MODE_BUTTON_COLOR).opacity(0.45)
+    gui_timer.select(SEL.FILL_EMERGENCY).fill_color(MODE_BUTTON_COLOR)
+    gui_timer.select(
+        [
+            SEL.BORDER_STOP,
+            SEL.BORDER_SLOW,
+            SEL.BORDER_NORMAL,
+            SEL.BORDER_RACING,
+            SEL.BORDER_EMERGENCY,
+        ]
+    ).stroke_color("MidNightBlue").opacity(0.45)
+
+    # Power Modes
+    gui_timer.select(SEL.ALL_BORDERS).hide()
+    gui_timer.select(
+        [
+            "#border-external",
+            "#border-internal",
+            "#border-system",
+        ]
+    ).show().all_color(POWER_BUTTON_COLOR)
+
+    # Timer Fonts
+    gui_timer.select(SEL.TEXT_TIMER).font_family("SevenSegment")
+    gui_timer.select(SEL.TEXT_MIN_SEC).font_size("3700%")
+    gui_timer.select(SEL.TEXT_CENTISEC).font_size("2600%")
+    gui_timer.select(SEL.TEXT_SYSTEM_TIMER_MIN_SEC).font_size("3550%")
+    gui_timer.select(SEL.TEXT_SYSTEM_TIMER_CENTISEC).font_size("2200%")
