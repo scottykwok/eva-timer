@@ -192,7 +192,7 @@ def register_event_listeners_timer():
     gui_timer.select(SEL.BUTTON_STOP).clickable().on_click(lambda e: timer.reset())
 
     # TBC
-    # gui_timer.select(SEL.CLICKABLE_BOTTOM).clickable().on_click()
+    gui_timer.select(SEL.CLICKABLE_BOTTOM).clickable().on_click(lambda e: toggle_rebuild_theme())
 
 
 def register_event_listeners_settings():
@@ -441,9 +441,10 @@ def toggle_rebuild_theme():
     global theme
     if theme == "rebuild":
         theme = "default"
+        remove_rebuild_theme()
     else:
         theme = "rebuild"
-    show_standby()
+        apply_rebuild_theme()
 
 
 def remove_rebuild_theme():
@@ -483,6 +484,7 @@ def apply_rebuild_theme():
     MODE_BUTTON_COLOR = "rgb(52,71,103)"
     POWER_BUTTON_COLOR = "rgb(78,108,178)"
     TEXT_COLOR = "rgb(220,231,242)"
+    REBUILD_RED = "Crimson"
 
     # Background
     color_gradient = gui_timer.select("#linear-gradient").targets[0]
@@ -543,7 +545,7 @@ def apply_rebuild_theme():
     ).show().all_color(POWER_BUTTON_COLOR)
 
     # Timer Fonts
-    gui_timer.select(SEL.TEXT_TIMER).font_family("SevenSegment")
+    gui_timer.select(SEL.TEXT_TIMER).font_family("SevenSegment").all_color(REBUILD_RED)
     gui_timer.select(SEL.TEXT_MIN_SEC).font_size("3700%")
     gui_timer.select(SEL.TEXT_CENTISEC).font_size("2600%")
     gui_timer.select(SEL.TEXT_SYSTEM_TIMER_MIN_SEC).font_size("3550%")
