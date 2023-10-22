@@ -10,8 +10,10 @@
         from js import document
         from pyodide.http import open_url
 
-        e = document.getElementById('container')
-        e.innerHTML = open_url("images/wille.svg").read()
+        e = document.querySelector("#container")
+        e.innerHTML = open_url("images/nerv.svg").read()
     </py-script>
+
 </body>
 </html>
+

@@ -16,3 +16,10 @@
         url("fonts/true-lcd-nge/true-lcd-nge.woff") format("woff"),
         url("fonts/true-lcd-nge/true-lcd-nge.ttf") format('truetype');
 }
+
+@font-face {
+    font-family: SevenSegment;
+    src:
+        url("fonts/7segment/7segment.woff") format("woff"),
+        url("fonts/7segment/7segment.ttf") format('truetype');
+}

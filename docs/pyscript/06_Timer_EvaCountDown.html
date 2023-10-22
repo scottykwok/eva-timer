@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>`
+    <title>Async Stopwatch implemented in Python</title>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+</head>
+
+<body style="background-color: #734f9a;">
+    <button id = "Play" py-click="stopwatch.play()">Play</button>
+    <button id = "Pause" py-click="stopwatch.pause()">Pause</button>
+    <button id = "Reset" py-click="stopwatch.reset()">Reset</button>
+    <button id = "Toggle" py-click="stopwatch.toggle_counting_mode()">Count Up/Down</button>
+    <button id = "Forward" py-click="stopwatch.adjust_elapsed_time(1)">>> 1s</button>
+
+    <pre><h1 id="timestamp" style="color:#52d053;"></h1></pre>
+    <pre id="status" style="color:orange;"></pre>
+
+    <py-script src="timer.py"></py-script>
+
+    <py-script>
+        html_timestamp = Element("timestamp")
+        html_status = Element("status")
+
+        def render_callback(time):
+            hours = int(time / 3600)
+            minutes = int((time % 3600) / 60)
+            seconds = int(time % 60)
+            milliseconds = int((time % 1) * 1000)
+            centiseconds = int((time % 1) * 100)
+            html_timestamp.write(f"{hours:02d}:{minutes:02d}:{seconds:02d}.{centiseconds:02d}")
+
+        def status_callback(from_status, to_status):
+            html_status.write(f"{from_status.value} -> {to_status.value}", append=True)
+
+        stopwatch = Stopwatch(
+            duration=10,
+            interval=35./1000,
+            emergency_duration=5,
+            status_callback=status_callback,
+            render_callback=render_callback
+        )
+        stopwatch.reset()
+    </py-script>
+
+</body>
+
+</html>
