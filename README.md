@@ -71,6 +71,7 @@ In Chrome, you can install this app as standalone web app. The "Install app" but
 | System Time |<img src="images/04_system_time.jpg" width="300" />
 | Greyscale |<img src="images/09_greyscale.jpg" width="300" />|
 | Wireframe |<img src="images/09_wireframe.jpg" width="300" />|
+| Rebuild |<img src="images/09_rebuild.jpg" width="300" />|
 | Settings |<img src="images/08_settings.jpg" width="300" />|
 | Install PWA|<img src="images/07_pwa1.jpg" width="200" />|
 | PWA on Chrome |<img src="images/07_pwa2.jpg" width="300" />|
@@ -85,7 +86,7 @@ See [eva-timer-analysis](https://github.com/scottykwok/eva-timer-analysis) for a
 [1.0.0](releases/tag/v1.0.0)
 - This was the first implementation in plain Javascript.
 
-[tbc](releases/tag/v2.0.0)
+[2.0.0](releases/tag/v2.0.0)
 - This version has been refactored to support PyScript and Javascript
 - Create `svgui.py` and `svgui.js` for better reusability
 - The project will be presented in [PyCon APAC 2023 @ Tokyo, Japan](https://2023-apac.pycon.jp/timetable).

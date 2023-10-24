@@ -191,6 +191,9 @@ def register_event_listeners_timer():
     # Stop
     gui_timer.select(SEL.BUTTON_STOP).clickable().on_click(lambda e: timer.reset())
 
+    # Slow
+    gui_timer.select(SEL.BUTTON_SLOW).clickable().on_click(lambda e: timer.toggle_play_pause())
+
     # TBC
     gui_timer.select(SEL.CLICKABLE_BOTTOM).clickable().on_click(lambda e: toggle_rebuild_theme())
 

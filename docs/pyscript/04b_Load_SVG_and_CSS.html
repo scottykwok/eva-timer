@@ -1,0 +1,31 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://pyscript.net/releases/2023.03.1/pyscript.css"/>
+    <script defer src="https://pyscript.net/releases/2023.03.1/pyscript.js"></script>
+    <style>
+        .blink {
+            animation: blink_keyframes 0.15s step-start infinite;
+        }
+        @keyframes blink_keyframes {
+            75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <py-script>
+        from js import document
+        from pyodide.http import open_url
+
+        e = document.querySelector("#container")
+        e.innerHTML = open_url("images/wille.svg").read()
+        e.classList.add("blink")
+    </py-script>
+</body>
+</html>
